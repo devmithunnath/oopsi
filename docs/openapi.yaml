@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: Oopsi Support Desk API
+  version: 0.1.0
+  description: >
+    Cloudflare-native support ticketing REST API backed by Workers, D1, and private R2 attachments.
+    Use this specification to generate typed clients for Android (Kotlin), Flutter (Dart), Go, Python, or any HTTP client.
+  license:
+    name: MIT
+    url: https://github.com/devmithunnath/oopsi/blob/main/LICENSE
+servers:
+  - url: https://support.example.com
+    description: Your deployed Oopsi Cloudflare Worker
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: Worker is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean }
+                  service: { type: string }
+                  brand: { type: string }
+
+  /api/tickets:
+    post:
+      summary: Create a support ticket (JSON or multipart/form-data with optional attachment)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTicketJSON"
+          multipart/form-data:
+            schema:
+              type: object
+              required: [email, subject, message]
+              properties:
+                name: { type: string }
+                email: { type: string, format: email }
+                category: { type: string, example: bug }
+                source: { type: string, example: android }
+                subject: { type: string, maxLength: 180 }
+                message: { type: string, maxLength: 10000 }
+                metadata: { type: string, description: "JSON-encoded key/value string map" }
+                attachment: { type: string, format: binary }
+      responses:
+        "201":
+          description: Ticket created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateTicketResponse"
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "429":
+          $ref: "#/components/responses/ErrorResponse"
+
+  /api/tickets/{access_token}:
+    get:
+      summary: Get ticket status and public message thread
+      parameters:
+        - name: access_token
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Ticket details and public messages (excludes internal notes)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TicketThreadResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+
+  /api/tickets/{access_token}/messages:
+    post:
+      summary: Post a customer follow-up reply (reopens ticket to open)
+      parameters:
+        - name: access_token
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message: { type: string, maxLength: 10000 }
+      responses:
+        "201":
+          description: Reply posted
+        "400":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+
+  /api/attachments/{id}:
+    get:
+      summary: Download a private R2 attachment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+        - name: token
+          in: query
+          required: false
+          description: Customer ticket access_token (omit when using Bearer ADMIN_TOKEN)
+          schema: { type: string }
+      responses:
+        "200":
+          description: Attachment binary stream with XSS sandbox headers
+        "403":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+
+  /admin/api/tickets:
+    get:
+      summary: List tickets in Admin Inbox
+      security:
+        - AdminBearer: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [open, waiting_on_customer, resolved, closed, all]
+        - name: q
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: Filtered list of tickets
+        "401":
+          $ref: "#/components/responses/ErrorResponse"
+
+  /admin/api/tickets/{ticket_code}:
+    get:
+      summary: Get full ticket thread including internal notes
+      security:
+        - AdminBearer: []
+      parameters:
+        - name: ticket_code
+          in: path
+          required: true
+          schema: { type: string, example: OPS-1001 }
+      responses:
+        "200":
+          description: Full admin ticket detail
+        "401":
+          $ref: "#/components/responses/ErrorResponse"
+        "404":
+          $ref: "#/components/responses/ErrorResponse"
+    patch:
+      summary: Update ticket status or priority
+      security:
+        - AdminBearer: []
+      parameters:
+        - name: ticket_code
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: [open, waiting_on_customer, resolved, closed] }
+                priority: { type: string, enum: [normal, high, urgent] }
+      responses:
+        "200":
+          description: Updated ticket
+
+  /admin/api/tickets/{ticket_code}/reply:
+    post:
+      summary: Send a public agent reply or save a private internal note
+      security:
+        - AdminBearer: []
+      parameters:
+        - name: ticket_code
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [body]
+              properties:
+                body: { type: string }
+                internal: { type: boolean, default: false }
+                status: { type: string, enum: [open, waiting_on_customer, resolved, closed] }
+      responses:
+        "201":
+          description: Reply or internal note recorded
+
+components:
+  securitySchemes:
+    AdminBearer:
+      type: http
+      scheme: bearer
+  responses:
+    ErrorResponse:
+      description: Error details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string }
+  schemas:
+    CreateTicketJSON:
+      type: object
+      required: [email, subject, message]
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        category: { type: string, default: other }
+        source: { type: string, default: web }
+        subject: { type: string, maxLength: 180 }
+        message: { type: string, maxLength: 10000 }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    CreateTicketResponse:
+      type: object
+      properties:
+        ticket_code: { type: string, example: OPS-1001 }
+        access_token: { type: string }
+        ticket_url: { type: string, format: uri }
+        status: { type: string, enum: [open, waiting_on_customer, resolved, closed] }
+    TicketThreadResponse:
+      type: object
+      properties:
+        ticket: { type: object }
+        messages:
+          type: array
+          items: { type: object }
