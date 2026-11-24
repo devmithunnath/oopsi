@@ -1,0 +1,47 @@
+# Oopsi — Cloudflare-Native Support Desk Kit
+
+> Open-source (MIT), $0/month Cloudflare Workers + D1 + R2 support ticketing engine with built-in `/admin` inbox, universal TypeScript client, drop-in React components, native Swift 6 package (macOS/iOS), and OpenAPI 3.1 spec.
+> Repository: https://github.com/devmithunnath/oopsi
+> Author: Mithun Nath (@devmithunnath)
+
+## Packages
+
+- `@oopsi/worker` (`packages/worker`): Cloudflare Worker factory `createSupportWorker(config)`, D1 migrations (`packages/worker/migrations/0001_init.sql`), private R2 attachment upload & XSS-sandboxed streaming, hashed-IP rate limiting, honeypot protection, built-in `/admin` Support Inbox HTML UI, optional `verifyCustomer` callback, and built-in adapters (`discordNotifier`, `slackNotifier`, `telegramNotifier`, `webhookNotifier`, `resendEmailAdapter`).
+- `@oopsi/client` (`packages/client`): Zero-dependency universal JS/TS SDK (`OopsiClient`: `createTicket`, `getTicket`, `replyToTicket`). Works in browsers, Cloudflare Pages, React Native, Expo, Electron, Node.
+- `@oopsi/react` (`packages/react`): Themeable `<SupportForm />` and `<TicketThread />` components with CSS custom properties (`@oopsi/react/styles.css`).
+- `Oopsi` Swift Package (`swift/Package.swift`): Products `OopsiClient` (`OopsiClient`, `OopsiCreateTicketRequest`, `OopsiAttachmentUpload`, `OopsiSystemInfo`, `DiagnosticsRedactor`) and `OopsiUI` (`OopsiSupportSheet`) for macOS 14+ and iOS 17+.
+- `docs/openapi.yaml`: Full OpenAPI 3.1 contract for Android (Kotlin), Flutter (Dart), Go, Python, or any REST client.
+
+## Cloudflare Bindings & Secrets
+
+- Required D1 binding: `DB` (apply `packages/worker/migrations/0001_init.sql` via `wrangler d1 migrations apply <db> --remote`)
+- Optional R2 binding: `ATTACHMENTS_BUCKET` (private bucket for screenshots/logs, max 10 MB default)
+- Required secret: `ADMIN_TOKEN` (set via `npx wrangler secret put ADMIN_TOKEN`; never commit or paste in chat)
+- Optional secrets:
+  - `SUPPORT_NOTIFY_WEBHOOK` (for `discordNotifier`, `slackNotifier`, or `webhookNotifier`)
+  - `TELEGRAM_BOT_TOKEN` & `TELEGRAM_CHAT_ID` (for `telegramNotifier`)
+  - `RESEND_API_KEY` (for `resendEmailAdapter`)
+
+## Public & Admin HTTP Routes
+
+- `GET /health` -> `{ ok: true, service: "oopsi-worker", brand }`
+- `POST /api/tickets` -> JSON or `multipart/form-data` (`name`, `email`, `category`, `source`, `subject`, `message`, `metadata`, optional `attachment`, honeypot `website`) -> `201 { ticket_code, access_token, ticket_url, status, attachments }`
+- `GET /api/tickets/:access_token` -> `200 { ticket, messages }` (excludes `internal_note`)
+- `POST /api/tickets/:access_token/messages` -> `{ message }` -> `201 { message, status: "open" }`
+- `GET /api/attachments/:id?token=:access_token` -> Private R2 binary stream (`Content-Security-Policy: default-src 'none'; sandbox`, `X-Content-Type-Options: nosniff`)
+- `GET /admin` -> Built-in responsive Support Inbox UI
+- `GET /admin/api/tickets?status=open&q=...` (Bearer `ADMIN_TOKEN`)
+- `GET /admin/api/tickets/:ticket_code` (Bearer `ADMIN_TOKEN`, includes `internal_note`s)
+- `PATCH /admin/api/tickets/:ticket_code` (`{ status, priority }`, Bearer `ADMIN_TOKEN`)
+- `POST /admin/api/tickets/:ticket_code/reply` (`{ body, internal, status }`, Bearer `ADMIN_TOKEN`)
+
+## Docs & Guides
+
+- Full AI Agent Setup Prompts: https://github.com/devmithunnath/oopsi/blob/main/docs/ai-agent-setup.md
+- Agent Skill: https://github.com/devmithunnath/oopsi/blob/main/skills/oopsi-setup/SKILL.md
+- Self-Hosting Guide: https://github.com/devmithunnath/oopsi/blob/main/docs/self-hosting.md
+- Adapters Guide: https://github.com/devmithunnath/oopsi/blob/main/docs/adapters.md
+- React Theming: https://github.com/devmithunnath/oopsi/blob/main/docs/react-theming.md
+- Swift SDK Guide: https://github.com/devmithunnath/oopsi/blob/main/docs/swift-sdk.md
+- OpenAPI 3.1 Spec: https://github.com/devmithunnath/oopsi/blob/main/docs/openapi.yaml
+- Starter Worker Template: https://github.com/devmithunnath/oopsi/tree/main/examples/cloudflare-worker
