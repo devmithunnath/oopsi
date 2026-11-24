@@ -1,0 +1,42 @@
+{
+  "name": "@oopsi/react",
+  "version": "0.1.0",
+  "description": "Drop-in themeable React components (<SupportForm />, <TicketThread />) for Oopsi Cloudflare support desks.",
+  "license": "MIT",
+  "author": "Mithun Nath <https://github.com/devmithunnath>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devmithunnath/oopsi.git",
+    "directory": "packages/react"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "files": [
+    "dist",
+    "src/styles.css",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@oopsi/client": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "react": "^19.1.0",
+    "typescript": "^5.8.2"
+  }
+}

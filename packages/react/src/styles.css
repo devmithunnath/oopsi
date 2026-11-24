@@ -1,0 +1,196 @@
+.oopsi-root {
+  --oopsi-bg: #0e1116;
+  --oopsi-surface: #141921;
+  --oopsi-border: #262d38;
+  --oopsi-text: #f0f6fc;
+  --oopsi-muted: #8b949e;
+  --oopsi-accent: #ff6b4a;
+  --oopsi-accent-ink: #0e1116;
+  --oopsi-success: #34d399;
+  --oopsi-success-ink: #06281e;
+  --oopsi-danger: #fb7185;
+  --oopsi-radius: 14px;
+  --oopsi-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --oopsi-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  color: var(--oopsi-text);
+  font-family: var(--oopsi-font);
+  line-height: 1.5;
+}
+
+.oopsi-root.oopsi-light {
+  --oopsi-bg: #ffffff;
+  --oopsi-surface: #f8fafc;
+  --oopsi-border: #e2e8f0;
+  --oopsi-text: #0f172a;
+  --oopsi-muted: #475569;
+  --oopsi-danger: #dc2626;
+}
+
+.oopsi-card {
+  background: var(--oopsi-surface);
+  border: 1px solid var(--oopsi-border);
+  border-radius: calc(var(--oopsi-radius) + 4px);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.oopsi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.oopsi-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.oopsi-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--oopsi-text);
+}
+
+.oopsi-input,
+.oopsi-select,
+.oopsi-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid var(--oopsi-border);
+  background: var(--oopsi-bg);
+  color: var(--oopsi-text);
+  padding: 11px 13px;
+  font: inherit;
+  font-size: 15px;
+}
+
+.oopsi-textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.oopsi-input:focus-visible,
+.oopsi-select:focus-visible,
+.oopsi-textarea:focus-visible {
+  outline: 2px solid var(--oopsi-accent);
+  outline-offset: 2px;
+}
+
+.oopsi-button {
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 0;
+  background: var(--oopsi-accent);
+  color: var(--oopsi-accent-ink);
+  font: inherit;
+  font-size: 15.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.oopsi-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.oopsi-button-secondary {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--oopsi-border);
+  background: var(--oopsi-bg);
+  color: var(--oopsi-text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.oopsi-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: var(--oopsi-mono);
+  background: color-mix(in srgb, var(--oopsi-accent) 16%, transparent);
+  color: var(--oopsi-accent);
+  border: 1px solid color-mix(in srgb, var(--oopsi-accent) 36%, transparent);
+}
+
+.oopsi-pill-success {
+  background: color-mix(in srgb, var(--oopsi-success) 16%, transparent);
+  color: var(--oopsi-success);
+  border-color: color-mix(in srgb, var(--oopsi-success) 36%, transparent);
+}
+
+.oopsi-error {
+  margin: 0;
+  font-size: 14px;
+  color: var(--oopsi-danger);
+}
+
+.oopsi-muted {
+  margin: 0;
+  font-size: 14px;
+  color: var(--oopsi-muted);
+}
+
+.oopsi-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.oopsi-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oopsi-msg {
+  border-radius: 14px;
+  border: 1px solid var(--oopsi-border);
+  background: var(--oopsi-bg);
+  padding: 15px 17px;
+}
+
+.oopsi-msg-agent {
+  border-color: color-mix(in srgb, var(--oopsi-success) 45%, transparent);
+  background: color-mix(in srgb, var(--oopsi-success) 7%, var(--oopsi-bg));
+}
+
+.oopsi-msg-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  color: var(--oopsi-muted);
+}
+
+.oopsi-msg-body {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 15px;
+}
