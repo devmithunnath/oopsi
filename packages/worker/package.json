@@ -1,0 +1,35 @@
+{
+  "name": "@oopsi/worker",
+  "version": "0.1.0",
+  "description": "Cloudflare Workers + D1 + R2 support desk backend with built-in /admin inbox and pluggable adapters.",
+  "license": "MIT",
+  "author": "Mithun Nath <https://github.com/devmithunnath>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devmithunnath/oopsi.git",
+    "directory": "packages/worker"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "migrations",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --experimental-strip-types --test tests/worker.test.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261123.1",
+    "typescript": "^5.8.2"
+  }
+}

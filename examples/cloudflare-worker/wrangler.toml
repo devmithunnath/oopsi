@@ -1,0 +1,13 @@
+name = "my-oopsi-support"
+main = "src/index.ts"
+compatibility_date = "2026-03-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "my-oopsi-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+migrations_dir = "../../packages/worker/migrations"
+
+[[r2_buckets]]
+binding = "ATTACHMENTS_BUCKET"
+bucket_name = "my-oopsi-attachments"
