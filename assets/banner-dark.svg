@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" fill="none">
+  <defs>
+    <linearGradient id="bg-dark" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0E1116"/>
+      <stop offset="55%" stop-color="#141821"/>
+      <stop offset="100%" stop-color="#1D1518"/>
+    </linearGradient>
+    <radialGradient id="glow-coral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 155) rotate(15) scale(340 220)">
+      <stop stop-color="#FF6B4A" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FF6B4A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-mint" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(990 165) rotate(-12) scale(320 210)">
+      <stop stop-color="#34D399" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#34D399" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="320" rx="24" fill="url(#bg-dark)"/>
+  <rect width="1200" height="320" rx="24" fill="url(#glow-coral)"/>
+  <rect width="1200" height="320" rx="24" fill="url(#glow-mint)"/>
+  <rect x="1" y="1" width="1198" height="318" rx="23" stroke="#2B313D" stroke-width="2"/>
+
+  <!-- Decorative subtle grid dots -->
+  <g opacity="0.18" fill="#8B949E">
+    <circle cx="88" cy="64" r="2"/><circle cx="128" cy="64" r="2"/><circle cx="168" cy="64" r="2"/>
+    <circle cx="88" cy="104" r="2"/><circle cx="128" cy="104" r="2"/>
+    <circle cx="1032" cy="216" r="2"/><circle cx="1072" cy="216" r="2"/><circle cx="1112" cy="216" r="2"/>
+    <circle cx="1072" cy="256" r="2"/><circle cx="1112" cy="256" r="2"/>
+  </g>
+
+  <!-- Logo mark -->
+  <g transform="translate(150 96)">
+    <rect width="124" height="124" rx="32" fill="#FF6B4A"/>
+    <path d="M31 43C31 36.3726 36.3726 31 43 31H81C87.6274 31 93 36.3726 93 43V72C93 78.6274 87.6274 84 81 84H56L39 96V84H43C36.3726 84 31 78.6274 31 72V43Z" fill="#0E1116"/>
+    <circle cx="51.5" cy="57.5" r="6.2" fill="#FF6B4A"/>
+    <path d="M65 57.5L72.5 65L85.5 49.5" stroke="#34D399" stroke-width="7.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Brand title + tagline -->
+  <text x="308" y="156" fill="#F8FAFC" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="76" font-weight="800" letter-spacing="-3">oopsi</text>
+
+  <rect x="525" y="106" width="136" height="32" rx="16" fill="#34D399" fill-opacity="0.16" stroke="#34D399" stroke-opacity="0.45"/>
+  <text x="593" y="127" text-anchor="middle" fill="#34D399" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">$0/mo · MIT</text>
+
+  <text x="310" y="198" fill="#C9D1D9" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="500">When users hit an oopsie, Oopsi catches it.</text>
+  <text x="310" y="232" fill="#8B949E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">Cloudflare Workers · D1 · R2 · React · Swift 6 (macOS / iOS) · OpenAPI 3.1</text>
+
+  <!-- Right-side mini ticket pill illustration -->
+  <g transform="translate(888 82)">
+    <rect width="212" height="152" rx="16" fill="#131720" stroke="#2D3442" stroke-width="1.5"/>
+    <rect x="16" y="18" width="84" height="22" rx="11" fill="#FF6B4A" fill-opacity="0.18"/>
+    <text x="58" y="33" text-anchor="middle" fill="#FF6B4A" font-family="ui-monospace, Menlo, monospace" font-size="11.5" font-weight="700">OPS-1042</text>
+    <rect x="110" y="18" width="86" height="22" rx="11" fill="#34D399" fill-opacity="0.16"/>
+    <text x="153" y="33" text-anchor="middle" fill="#34D399" font-family="Inter, sans-serif" font-size="11" font-weight="700">✓ Resolved</text>
+    <rect x="16" y="56" width="160" height="10" rx="5" fill="#E2E8F0" fill-opacity="0.85"/>
+    <rect x="16" y="76" width="128" height="8" rx="4" fill="#8B949E" fill-opacity="0.55"/>
+    <rect x="16" y="102" width="180" height="32" rx="10" fill="#0E1116" stroke="#262D3A"/>
+    <circle cx="34" cy="118" r="5" fill="#34D399"/>
+    <text x="48" y="122" fill="#C9D1D9" font-family="ui-monospace, Menlo, monospace" font-size="11.5">logs-redacted.zip</text>
+  </g>
+</svg>

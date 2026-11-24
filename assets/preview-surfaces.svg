@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="310" viewBox="0 0 1200 310" fill="none">
+  <rect width="1200" height="310" rx="20" fill="#0E1116"/>
+  <rect x="1" y="1" width="1198" height="308" rx="19" stroke="#262D38" stroke-width="2"/>
+
+  <!-- Card 1: Web Form -->
+  <g transform="translate(28 28)">
+    <rect width="356" height="254" rx="14" fill="#141921" stroke="#262D38"/>
+    <text x="20" y="34" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="15" font-weight="700">1. Web Help Center</text>
+    <text x="242" y="34" fill="#FF6B4A" font-family="ui-monospace, Menlo, monospace" font-size="12">@oopsi/react</text>
+    <line x1="20" y1="48" x2="336" y2="48" stroke="#232936"/>
+    <rect x="20" y="64" width="316" height="34" rx="8" fill="#0E1116" stroke="#262D38"/>
+    <text x="32" y="85" fill="#8B949E" font-family="Inter, sans-serif" font-size="12.5">you@example.com</text>
+    <rect x="20" y="108" width="316" height="62" rx="8" fill="#0E1116" stroke="#262D38"/>
+    <text x="32" y="130" fill="#C9D1D9" font-family="Inter, sans-serif" font-size="12.5">Export stalled on 4K recording…</text>
+    <text x="32" y="152" fill="#34D399" font-family="ui-monospace, Menlo, monospace" font-size="11.5">📎 screenshot.png (412 KB)</text>
+    <rect x="20" y="188" width="316" height="40" rx="10" fill="#FF6B4A"/>
+    <text x="178" y="213" text-anchor="middle" fill="#0E1116" font-family="Inter, sans-serif" font-size="13.5" font-weight="700">Submit Support Request</text>
+  </g>
+
+  <!-- Card 2: Admin Inbox -->
+  <g transform="translate(422 28)">
+    <rect width="356" height="254" rx="14" fill="#141921" stroke="#3A2825"/>
+    <text x="20" y="34" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="15" font-weight="700">2. Built-in /admin Inbox</text>
+    <text x="234" y="34" fill="#34D399" font-family="ui-monospace, Menlo, monospace" font-size="12">@oopsi/worker</text>
+    <line x1="20" y1="48" x2="336" y2="48" stroke="#232936"/>
+    <rect x="20" y="62" width="84" height="22" rx="11" fill="#FF6B4A" fill-opacity="0.18"/>
+    <text x="62" y="77" text-anchor="middle" fill="#FF6B4A" font-family="ui-monospace, Menlo, monospace" font-size="11.5" font-weight="700">UGL-1001</text>
+    <rect x="112" y="62" width="122" height="22" rx="11" fill="#34D399" fill-opacity="0.16"/>
+    <text x="173" y="77" text-anchor="middle" fill="#34D399" font-family="Inter, sans-serif" font-size="11" font-weight="700">✓ Verified Buyer</text>
+    <text x="20" y="110" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Export stalled on 4K recording</text>
+    <text x="20" y="130" fill="#8B949E" font-family="ui-monospace, Menlo, monospace" font-size="11.5">macOS 26.1 · M3 Max · App 1.0.0</text>
+    <rect x="20" y="146" width="316" height="42" rx="8" fill="#0E1116" stroke="#262D38"/>
+    <text x="32" y="171" fill="#C9D1D9" font-family="Inter, sans-serif" font-size="12">Fixed in 1.0.1! Grab the update…</text>
+    <rect x="20" y="198" width="150" height="34" rx="8" fill="#34D399"/>
+    <text x="95" y="219" text-anchor="middle" fill="#06281E" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Send Reply</text>
+    <rect x="182" y="198" width="154" height="34" rx="8" fill="#1C222D" stroke="#2D3544"/>
+    <text x="259" y="219" text-anchor="middle" fill="#C9D1D9" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Internal Note</text>
+  </g>
+
+  <!-- Card 3: Native Apple SDK -->
+  <g transform="translate(816 28)">
+    <rect width="356" height="254" rx="14" fill="#141921" stroke="#262D38"/>
+    <text x="20" y="34" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="15" font-weight="700">3. Native macOS &amp; iOS</text>
+    <text x="250" y="34" fill="#FF6B4A" font-family="ui-monospace, Menlo, monospace" font-size="12">Oopsi.swift</text>
+    <line x1="20" y1="48" x2="336" y2="48" stroke="#232936"/>
+    <text x="20" y="76" fill="#C9D1D9" font-family="Inter, sans-serif" font-size="13" font-weight="600">Help → Contact Support…</text>
+    <rect x="20" y="92" width="316" height="44" rx="10" fill="#0E1116" stroke="#262D38"/>
+    <rect x="32" y="106" width="16" height="16" rx="4" fill="#34D399"/>
+    <path d="M36 114L39 117L45 110.5" stroke="#06281E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="58" y="118" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="12.5">Attach redacted diagnostics</text>
+    <rect x="20" y="146" width="316" height="38" rx="10" fill="#0E1116" stroke="#262D38"/>
+    <text x="32" y="169" fill="#8B949E" font-family="ui-monospace, Menlo, monospace" font-size="11.5">Scrubs /Users/*, API &amp; license keys</text>
+    <rect x="20" y="196" width="316" height="36" rx="10" fill="#1A2420" stroke="#34D399" stroke-opacity="0.45"/>
+    <text x="178" y="218" text-anchor="middle" fill="#34D399" font-family="ui-monospace, Menlo, monospace" font-size="12.5" font-weight="700">✓ Sent · Ticket UGL-1001</text>
+  </g>
+</svg>
