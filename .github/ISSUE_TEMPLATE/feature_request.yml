@@ -1,0 +1,14 @@
+name: Feature or Adapter Request
+description: Suggest a new capability, email/notifier adapter, or SDK
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed design or adapter API

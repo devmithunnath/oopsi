@@ -1,0 +1,28 @@
+name: Bug Report
+description: Report a bug in @oopsi/worker, @oopsi/client, @oopsi/react, or the Swift Package
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Affected Package
+      options:
+        - "@oopsi/worker"
+        - "@oopsi/client"
+        - "@oopsi/react"
+        - "Oopsi (Swift Package)"
+        - "Docs / OpenAPI"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Clear description of the issue and steps to reproduce.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "Node 22 / Wrangler 4.x / macOS 26 / Swift 6..."
